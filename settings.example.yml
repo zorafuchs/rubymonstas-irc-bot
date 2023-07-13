@@ -1,3 +1,4 @@
 SERVER: "irc.server.domain"
 PORT: 6667
 CHANNEL: "#yourchannel"
+NAME: "botname"
