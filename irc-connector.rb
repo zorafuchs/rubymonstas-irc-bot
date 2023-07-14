@@ -21,7 +21,7 @@ class IRCConnector
     until @socket.eof? do
       message = @socket.gets
       log_to_console message
-      keep_connection_alive if message.start_with?("PING")
+      keep_connection_alive(message) if message.start_with?("PING")
       join_channel if !@joined && message.include?("MODE #{@name}")
       abbonoment_receiver.call(message) if message.include?("PRIVMSG #{@channel}")
     end
@@ -32,7 +32,7 @@ class IRCConnector
     @joined = true
   end
 
-  def keep_connection_alive
+  def keep_connection_alive(message)
     challenge = message.split(" ").last
     @irc_connector.irc_send "PONG #{challenge}"
   end
