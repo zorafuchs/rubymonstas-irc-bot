@@ -34,7 +34,7 @@ class IRCConnector
 
   def keep_connection_alive(message)
     challenge = message.split(" ").last
-    @irc_connector.irc_send "PONG #{challenge}"
+    send "PONG #{challenge}"
   end
 
   def send(message)

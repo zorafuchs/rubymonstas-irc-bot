@@ -6,7 +6,7 @@ class StatelessReactionController
   end    
 
   def stateless_reaction_to(message)
-    case message
+    case message.body
     when @blubb
       "blubbedi!"
     when @hello
@@ -17,10 +17,7 @@ class StatelessReactionController
   end
 
   def provide_food_ideas
-    pp "in provide food ideas"
     food_ideas = YAML.load_file 'food-ideas.yml'
-    pp food_ideas
-    pp food_ideas[rand(food_ideas.size)]
     "I would recommend eating #{food_ideas[rand(food_ideas.size)]}"
   end
 end
